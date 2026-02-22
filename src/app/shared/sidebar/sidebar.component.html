@@ -1,0 +1,99 @@
+<aside class="sidebar">
+
+  <!-- Stats -->
+  <div class="section">
+    <div class="section-title">Overview</div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-num">{{ stats.total }}</div>
+        <div class="stat-lbl">Total</div>
+      </div>
+      <div class="stat-card urgent">
+        <div class="stat-num">{{ stats.urgent }}</div>
+        <div class="stat-lbl">Urgent</div>
+      </div>
+      <div class="stat-card progress">
+        <div class="stat-num">{{ stats.in_progress }}</div>
+        <div class="stat-lbl">In Progress</div>
+      </div>
+      <div class="stat-card resolved">
+        <div class="stat-num">{{ stats.resolved }}</div>
+        <div class="stat-lbl">Resolved</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ticket Type -->
+  <div class="section">
+    <div class="section-title">Ticket Type</div>
+    <div
+      *ngFor="let t of ticketTypes"
+      class="filter-chip"
+      [class.active]="activeType === t.value"
+      (click)="setType(t.value)"
+    >
+      <span>{{ t.label }}</span>
+    </div>
+  </div>
+
+  <!-- Priority -->
+  <div class="section">
+    <div class="section-title">Min Priority</div>
+    <div class="slider-wrap">
+      <div class="slider-labels">
+        <span>1</span><span>10</span>
+      </div>
+      <input
+        type="range" min="1" max="10"
+        [(ngModel)]="minPriority"
+        (input)="onPriorityChange()"
+        [style.background]="'linear-gradient(to right, var(--teal) ' + sliderPercent + '%, var(--navy-light) ' + sliderPercent + '%)'"
+      />
+      <div class="slider-value">
+        Showing priority ≥ <strong>{{ minPriority }}</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- Segment -->
+  <div class="section">
+    <div class="section-title">Segment</div>
+    <div
+      *ngFor="let s of segments"
+      class="seg-pill"
+      [class.active]="activeSegment === s.value"
+      (click)="setSegment(s.value)"
+    >
+      <div class="seg-dot" [style.background]="s.color"></div>
+      {{ s.label }}
+    </div>
+  </div>
+
+  <!-- Sentiment -->
+  <div class="section">
+    <div class="section-title">Sentiment</div>
+    <div
+      *ngFor="let s of sentiments"
+      class="filter-chip"
+      [class.active]="activeSentiment === s.value"
+      [class]="'filter-chip sent-' + s.cls + (activeSentiment === s.value ? ' active' : '')"
+      (click)="setSentiment(s.value)"
+    >
+      <span>{{ s.label }}</span>
+    </div>
+  </div>
+
+  <!-- Language -->
+  <div class="section">
+    <div class="section-title">Language</div>
+    <div
+      *ngFor="let l of languages"
+      class="filter-chip"
+      [class.active]="activeLanguage === l"
+      (click)="setLanguage(l)"
+    >
+      <span>{{ l }}</span>
+    </div>
+  </div>
+
+</aside>

@@ -1,0 +1,75 @@
+<div class="upload-shell">
+  <app-header />
+
+  <div class="upload-content">
+    <div class="upload-header">
+      <a routerLink="/" class="back-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Back to Dashboard
+      </a>
+      <div class="page-title">Upload CSV Files</div>
+      <div class="page-sub">Load in order: Offices → Managers → Tickets</div>
+    </div>
+
+    <div class="slots-grid">
+      <div
+        class="upload-slot"
+        *ngFor="let slot of slots; let i = index"
+        [class.done]="slot.status === 'done'"
+        [class.error]="slot.status === 'error'"
+      >
+        <div class="slot-step">{{ i + 1 }}</div>
+        <div class="slot-icon">{{ slot.icon }}</div>
+        <div class="slot-label">{{ slot.label }}</div>
+        <div class="slot-desc">{{ slot.description }}</div>
+
+        <!-- Drop zone -->
+        <div
+          class="drop-zone"
+          [class.has-file]="slot.file"
+          (dragover)="onDragOver($event)"
+          (drop)="onFileDrop($event, slot)"
+          (click)="fileInput.click()"
+        >
+          <input #fileInput type="file" accept=".csv" hidden (change)="onFileSelect($event, slot)">
+          <span *ngIf="!slot.file">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom:8px">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="17 8 12 3 7 8"/>
+              <line x1="12" y1="3" x2="12" y2="15"/>
+            </svg>
+            <br>Drop CSV here or click to browse
+          </span>
+          <span *ngIf="slot.file" class="file-name">
+            📄 {{ slot.file.name }}
+          </span>
+        </div>
+
+        <!-- Actions -->
+        <div class="slot-actions" *ngIf="slot.file && slot.status === 'idle'">
+          <button class="btn-primary" (click)="upload(slot)">Upload</button>
+          <button class="btn-icon" (click)="clearSlot(slot)">Clear</button>
+        </div>
+
+        <!-- Uploading -->
+        <div class="uploading" *ngIf="slot.status === 'uploading'">
+          <div class="upload-bar"><div class="upload-fill"></div></div>
+          <span>Uploading…</span>
+        </div>
+
+        <!-- Result message -->
+        <div class="slot-message" [class.ok]="slot.status === 'done'" [class.err]="slot.status === 'error'" *ngIf="slot.message">
+          {{ slot.message }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Tip -->
+    <div class="tip">
+      💡 After uploading tickets, AI enrichment and assignment starts automatically in the background.
+      Return to the dashboard to see results as they process.
+    </div>
+  </div>
+</div>

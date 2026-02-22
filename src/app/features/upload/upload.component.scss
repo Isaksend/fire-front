@@ -1,0 +1,179 @@
+.upload-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.upload-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 32px 40px;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.upload-header {
+  margin-bottom: 32px;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 12px;
+  transition: color 0.2s;
+  margin-bottom: 16px;
+
+  &:hover { color: var(--teal); }
+}
+
+.page-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 26px;
+  margin-bottom: 6px;
+}
+
+.page-sub {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+// Upload slots
+.slots-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.upload-slot {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  transition: border-color 0.2s;
+  position: relative;
+
+  &.done  { border-color: var(--positive); }
+  &.error { border-color: var(--negative); }
+}
+
+.slot-step {
+  position: absolute;
+  top: 14px; left: 14px;
+  width: 22px; height: 22px;
+  background: var(--teal);
+  color: var(--navy);
+  border-radius: 50%;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slot-icon { font-size: 32px; }
+.slot-label { font-family: var(--font-display); font-weight: 600; font-size: 15px; }
+.slot-desc { font-size: 10px; color: var(--muted); line-height: 1.5; word-break: break-word; }
+
+.drop-zone {
+  width: 100%;
+  border: 1.5px dashed var(--card-border);
+  border-radius: 10px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 80px;
+
+  &:hover, &:focus {
+    border-color: var(--teal);
+    background: var(--teal-glow);
+    color: var(--teal);
+  }
+
+  &.has-file {
+    border-color: var(--teal);
+    background: var(--teal-glow);
+    color: var(--teal);
+  }
+}
+
+.file-name {
+  font-size: 12px;
+  color: var(--teal);
+  word-break: break-all;
+}
+
+.slot-actions {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  justify-content: center;
+}
+
+.uploading {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.upload-bar {
+  width: 100%;
+  height: 4px;
+  background: var(--navy-light);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.upload-fill {
+  height: 100%;
+  background: var(--teal);
+  border-radius: 2px;
+  animation: uploadProgress 1.5s ease-in-out infinite;
+}
+
+@keyframes uploadProgress {
+  0%   { width: 0%; margin-left: 0; }
+  50%  { width: 60%; margin-left: 20%; }
+  100% { width: 0%; margin-left: 100%; }
+}
+
+.slot-message {
+  font-size: 11px;
+  padding: 6px 10px;
+  border-radius: 6px;
+
+  &.ok  { background: rgba(34,197,94,0.1);  color: var(--positive); }
+  &.err { background: rgba(239,68,68,0.1);  color: var(--negative); }
+}
+
+.tip {
+  background: rgba(0,196,160,0.08);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 14px 18px;
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.6;
+}

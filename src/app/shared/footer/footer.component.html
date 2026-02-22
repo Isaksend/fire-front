@@ -1,0 +1,27 @@
+<footer class="footer">
+  <div class="footer-left">
+    <div class="foot-stat">
+      <span class="foot-val">{{ stats.in_progress }}</span> in progress
+    </div>
+    <div class="foot-sep"></div>
+    <div class="foot-stat">
+      <span class="foot-val new">{{ stats.new }}</span> awaiting
+    </div>
+    <div class="foot-sep"></div>
+    <div class="foot-stat">
+      <span class="foot-val resolved">{{ stats.resolved }}</span> resolved
+    </div>
+    <div class="foot-sep"></div>
+    <div class="rr-info">
+      Round Robin:
+      <span class="rr-badge">Next → {{ nextAlmaty }}</span>
+      <span class="office-label">Almaty</span>
+      ·
+      <span class="rr-badge">Next → {{ nextAstana }}</span>
+      <span class="office-label">Astana</span>
+    </div>
+  </div>
+  <div class="footer-right">
+    <span *ngIf="lastRunTime">Last AI run: <strong>{{ lastRunTime }}</strong></span>
+  </div>
+</footer>

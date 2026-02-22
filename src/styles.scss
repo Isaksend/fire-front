@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+  --navy: #0a1628;
+  --navy-mid: #112240;
+  --navy-light: #1a3458;
+  --teal: #00c4a0;
+  --teal-dim: #00a88a;
+  --teal-glow: rgba(0, 196, 160, 0.12);
+  --gold: #f5a623;
+  --white: #f0f4f8;
+  --muted: #7a94b4;
+  --card-bg: #0e1f38;
+  --card-border: rgba(0, 196, 160, 0.15);
+  --positive: #22c55e;
+  --neutral: #eab308;
+  --negative: #ef4444;
+  --seg-vip: #a855f7;
+  --seg-priority: #f59e0b;
+  --seg-mass: #64748b;
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--navy);
+  color: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--navy-light); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--teal-dim); }
+
+// ── Shared badge styles ──────────────────────────────────────────────────────
+.badge {
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+
+  &.badge-type   { background: rgba(0,196,160,0.15);   color: var(--teal);         border: 1px solid rgba(0,196,160,0.25); }
+  &.badge-pos    { background: rgba(34,197,94,0.15);   color: var(--positive);     border: 1px solid rgba(34,197,94,0.25); }
+  &.badge-neu    { background: rgba(234,179,8,0.15);   color: var(--neutral);      border: 1px solid rgba(234,179,8,0.25); }
+  &.badge-neg    { background: rgba(239,68,68,0.15);   color: var(--negative);     border: 1px solid rgba(239,68,68,0.25); }
+  &.badge-vip    { background: rgba(168,85,247,0.15);  color: var(--seg-vip);      border: 1px solid rgba(168,85,247,0.25); }
+  &.badge-prio   { background: rgba(245,158,11,0.15);  color: var(--seg-priority); border: 1px solid rgba(245,158,11,0.25); }
+  &.badge-mass   { background: rgba(100,116,139,0.15); color: #94a3b8;             border: 1px solid rgba(100,116,139,0.25); }
+  &.badge-lang   { background: rgba(14,165,233,0.15);  color: #38bdf8;             border: 1px solid rgba(14,165,233,0.25); }
+}
+
+// ── Shared button styles ─────────────────────────────────────────────────────
+.btn-primary {
+  background: var(--teal);
+  color: var(--navy);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  &:hover { background: var(--teal-dim); transform: translateY(-1px); }
+  &:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+}
+
+.btn-icon {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--muted);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  transition: all 0.2s;
+
+  &:hover { color: var(--teal); border-color: var(--teal); }
+}
+
+// ── Animations ───────────────────────────────────────────────────────────────
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.8); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
