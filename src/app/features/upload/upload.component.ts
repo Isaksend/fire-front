@@ -8,7 +8,6 @@ interface UploadSlot {
   key: 'tickets' | 'managers' | 'offices';
   label: string;
   icon: string;
-  description: string;
   file: File | null;
   status: 'idle' | 'uploading' | 'done' | 'error';
   message: string;
@@ -23,9 +22,9 @@ interface UploadSlot {
 })
 export class UploadComponent {
   slots: UploadSlot[] = [
-    { key: 'offices',  label: 'Offices CSV',  icon: '🏢', description: 'office_name, address, city, lat, lng', file: null, status: 'idle', message: '' },
-    { key: 'managers', label: 'Managers CSV', icon: '👥', description: 'full_name, position, skills, business_unit, current_workload, office_name', file: null, status: 'idle', message: '' },
-    { key: 'tickets',  label: 'Tickets CSV',  icon: '🎫', description: 'client_guid, gender, date_of_birth, segment, description, attachments, country, region, city, street, house', file: null, status: 'idle', message: '' },
+    { key: 'offices',  label: 'Offices CSV',  icon: '🏢', file: null, status: 'idle', message: '' },
+    { key: 'managers', label: 'Managers CSV', icon: '👥', file: null, status: 'idle', message: '' },
+    { key: 'tickets',  label: 'Tickets CSV',  icon: '🎫', file: null, status: 'idle', message: '' },
   ];
 
   constructor(private api: ApiService) {}
